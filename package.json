@@ -1,17 +1,26 @@
 {
   "name": "portpilot",
-  "version": "0.0.1",
+  "author": "Abhinav Prakash",
+  "version": "0.0.2",
   "description": "Map local dev ports to custom domains easily",
-  "main": "bin/cli.js",
-  "type": "module",
+  "main": "./dist/cjs/main.js",
+  "module": "./dist/esm/main.js",
+  "exports": {
+    ".": {
+      "require": "./dist/cjs/main.js",
+      "import": "./dist/esm/main.js"
+    }
+  },
   "bin": {
-    "portpilot": "./bin/cli.js"
+    "portpilot": "./dist/cjs/bin/cli.js"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/rishiyaduwanshi/portpilot.git"
   },
   "scripts": {
+    "build": "node scripts/build.mjs",
+    "prepublishOnly": "pnpm build",
     "dev": "nodemon bin/cli.js",
     "start": "node bin/cli.js",
     "test-server": "node test/test-server.test.js"
@@ -21,12 +30,22 @@
     "local",
     "domain",
     "port",
-    "pilot"
+    "pilot",
+    "portpilot"
   ],
-  "author": "Abhinav Prakash",
+  "files": [
+    "bin/",
+    "lib/",
+    "dist/",
+    "cli.js",
+    "main.js",
+    "README.md"
+  ],
   "license": "MIT",
   "dependencies": {
-    "chalk": "^5.4.1",
-    "http-proxy": "^1.18.1"
+    "chalk": "^5.4.1"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.2"
   }
 }

@@ -1,0 +1,29 @@
+test/
+templates/
+.git/
+.gitignore
+*.log
+.DS_Store
+
+# Development files
+lib/
+bin/
+scripts/
+test/
+templates/
+main.js
+
+# Config files
+.gitignore
+.pilotrc.js
+
+# Source maps and logs
+*.map
+*.log
+
+# System files
+.DS_Store
+.git/
+
+# Build process
+node_modules/
