@@ -1,7 +1,11 @@
-
 # 🚀 PortPilot
 
-Map your local development ports to custom domains effortlessly. Perfect for testing your applications with real domain names locally, across Windows, macOS, and Linux.
+**Pilot your ports like domains** — Map your local ports to custom domains effortlessly!
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![npm version](https://img.shields.io/npm/v/portpilot.svg)](https://www.npmjs.com/package/portpilot)
+
+🌐 [Website](https://portpilot.pages.dev)
 
 ---
 
@@ -9,193 +13,140 @@ Map your local development ports to custom domains effortlessly. Perfect for tes
 
 - 🔄 Map any local port to a custom domain  
 - ⚙️ Zero-config proxy setup  
-- 🛡️ Handles port 80 automatically  
-- 🧠 Smart admin privileges handling  
-- 💻 Works on Windows, macOS, and Linux  
+- 🛡️ Auto-handles port 80 permission issues  
+- 💻 Cross-platform: Windows, macOS, and Linux  
 
 ---
 
 ## 📦 Installation
 
 ```bash
+# Project-level (dev dependency)
 npm install -D portpilot
 # or
 pnpm add -D portpilot
-```
 
-For global usage:
-
-```bash
-npm install -g --save-dev portpilot
+# Global installation
+npm install -g portpilot
 # or
-pnpm add -g --save-dev portpilot
+pnpm add -g portpilot
 ```
 
 ---
 
 ## 🚀 Quick Start
 
-### 1. Create a `.pilotrc.js` file in your project root:
+1. Create a `.pilotrc.js` file in your project root:
 
-```javascript
+**ES Module**
+```js
 export default {
-  port: 3000,             // Your app's port
-  domain: 'myapp.local',  // Custom local domain
-  isHttps: false,         // Optional: Enable HTTPS
-  isLog: true             // Optional: Enable logging
+  port: 3000,
+  domain: 'myapp.local',
+  isHttps: false,
+  isLog: true
 }
 ```
 
-### 2. Run PortPilot
+**CommonJS**
+```js
+module.exports = {
+  port: 3000,
+  domain: 'myapp.local',
+  isHttps: false,
+  isLog: true
+}
+```
+
+2. Start PortPilot:
 
 ```bash
 npx portpilot
-# or if installed globally
+# or (if installed globally)
 portpilot
 ```
 
+3. Open in browser: `http://myapp.local`
+
 ---
 
-## ⚙️ Configuration Options
+## ⚙️ Config Options
 
 | Option     | Type    | Description                     | Default |
 |------------|---------|---------------------------------|---------|
-| `port`     | Number  | Your application's port         | —       |
+| `port`     | Number  | App’s local port                | —       |
 | `domain`   | String  | Custom domain (e.g. app.local)  | —       |
 | `isHttps`  | Boolean | Enable HTTPS support            | false   |
-| `isLog`    | Boolean | Enable detailed logging         | true    |
-
----
-
-## 📝 Example
-
-1. Start your application on port 3000  
-2. Create `.pilotrc.js`:
-
-```javascript
-export default {
-  port: 3000,
-  domain: 'myapp.local'
-}
-```
-
-3. Run:
-
-```bash
-npx portpilot
-```
-
-4. Open your browser and visit: `http://myapp.local`
-
----
-
-## ❗ Common Issues
-
-### 🔒 Port 80 Permission Denied
-- If port 80 is in use or admin rights are missing:
-  1. PortPilot will try to fallback to another port (like 3001)
-  2. Or provide instructions to fix it manually
-
-### 👑 Admin Rights
-- **Windows**: Run terminal as Administrator  
-- **macOS/Linux**: Use `sudo` when needed
-
----
-
-## 🛠️ Development
-
-Want to contribute? Here’s how:
-
-1. Fork the repo  
-2. Clone your fork:
-
-```bash
-git clone https://github.com/yourusername/portpilot.git
-```
-
-3. Install dependencies:
-
-```bash
-pnpm install
-```
-
-4. Run the test server:
-
-```bash
-pnpm test-server
-```
-
-5. Start development mode:
-
-```bash
-pnpm dev
-```
+| `isLog`    | Boolean | Enable logs                     | true    |
 
 ---
 
 ## 🧪 Testing
 
-To verify PortPilot’s behavior with a mock server:
-
 ```bash
 pnpm test-server
 ```
 
-This spins up a test HTTP server on port `3000`.
+Runs a test server on port 3000 so you can try out PortPilot instantly.
 
 ---
 
-## 🤝 Contributing
+## 🧠 Troubleshooting
 
-1. Fork it  
-2. Create your feature branch:  
-   `git checkout -b feature/amazing`
-3. Commit your changes:  
-   `git commit -am 'Add amazing feature'`
-4. Push the branch:  
-   `git push origin feature/amazing`
+### 🔒 Permission Denied (Port 80)
+
+- **Windows:** Run terminal as Administrator  
+- **macOS/Linux:** Use `sudo`
+
+PortPilot detects permission issues and handles fallbacks automatically.
+
+---
+
+## 🛠️ Contributing
+
+1. Fork this repo  
+2. Create your feature branch: `git checkout -b feature/xyz`  
+3. Commit your changes  
+4. Push to GitHub  
 5. Open a Pull Request 🚀
-
----
-
-## 📋 Requirements
-
-- Node.js 16.0.0 or newer  
-- Works on Windows, macOS, and Linux  
-- Admin/root access needed for host file modification (first time only)
 
 ---
 
 ## 🔮 Roadmap
 
-- ✅ Basic domain mapping  
-- ✅ Admin rights handling  
-- [ ] HTTPS support  
-- [ ] Multiple domain mapping  
-- [ ] Custom SSL certificate support  
-- [ ] Docker support  
+- ✅ Domain mapping
+- ✅ Admin permission handling
+- [ ] HTTPS support
+- [ ] Multi-domain config
+- [ ] Custom SSL certificates
+- [ ] Docker integration
 
 ---
 
+## 📋 Requirements
+
+- Node.js 16+
+- Admin/root privileges for host file updates
+- `sudo` or admin terminal for port access
+
+---
 
 ## 📄 License
 
-MIT © [Abhinav Prakash](https://github.com/abhinavprakash-dev)
+MIT © [Abhinav Prakash](https://github.com/rishiyaduwanshi)
 
 ---
 
-## 💬 Support
+## 💬 Feedback & Support
 
-Found a bug or have an idea?
-
-- 🐞 [Report an issue](https://github.com/yourusername/portpilot/issues)
-- 💡 Request a feature  
-- 📚 Dive into the docs (coming soon)
+- 🐞 [Open Issues](https://github.com/rishiyaduwanshi/portpilot/issues)
+- 🌟 Give it a ⭐ on GitHub if you like it
+- 📧 Email: [abhinav@example.com](mailto:abhinav@example.com)
 
 ---
 
-## 🌟 Show Your Support
+## 🌐 Links
 
-If you found this useful, don't forget to **star** ⭐ the repo and share it!
+- 🔗 Website: [portpilot.pages.dev](https://portpilot.pages.dev)
+- 📦 npm: [npmjs.com/package/portpilot](https://www.npmjs.com/package/portpilot)
 
----
