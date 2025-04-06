@@ -141,12 +141,9 @@ MIT © [Abhinav Prakash](https://github.com/rishiyaduwanshi)
 
 - 🐞 [Open Issues](https://github.com/rishiyaduwanshi/portpilot/issues)
 - 🌟 Give it a ⭐ on GitHub if you like it
-- 📧 Email: [abhinav@example.com](mailto:contact@rishiyaduwanshi.me)
-
+- 📧 Email: [contact@rishiyaduwanshi.me](mailto:contact@rishiyaduwanshi.me)
 ---
 
-## 🌐 Links
-
-- 🔗 Website: [portpilot.pages.dev](https://portpilot.pages.dev)
+## 🌐 Lit.pages.dev](https://portpilot.pages.dev)
 - 📦 npm: [npmjs.com/package/portpilot](https://www.npmjs.com/package/portpilot)
 
