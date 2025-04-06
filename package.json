@@ -1,0 +1,33 @@
+{
+  "name": "portpilot",
+  "version": "0.0.1",
+  "description": "Map local dev ports to custom domains easily",
+  "main": "bin/cli.js",
+  "type": "module",
+  "bin": {
+    "portpilot": "./bin/cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rishiyaduwanshi/portpilot.git"
+  },
+  "scripts": {
+    "dev": "nodemon bin/cli.js",
+    "start": "node bin/cli.js",
+    "test-server": "node test/test-server.test.js"
+  },
+  "keywords": [
+    "dev",
+    "local",
+    "domain",
+    "port",
+    "pilot"
+  ],
+  "author": "Abhinav Prakash",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "express": "^4.18.2",
+    "http-proxy": "^1.18.1"
+  }
+}
