@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PortPilot - Map Local Ports to Custom Domains</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-b from-gray-100 to-gray-200">
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-blue-600 to-indigo-700">
+        <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl font-bold text-white sm:text-5xl md:text-6xl">
+                🚀 PortPilot
+            </h1>
+            <p class="mt-3 max-w-md mx-auto text-base text-gray-100 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+                Pilot your ports like domains
+            </p>
+            <div class="mt-5 max-w-md mx-auto flex justify-center md:mt-8">
+                <a href="https://www.npmjs.com/package/portpilot" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10">
+                    📦 npm install
+                </a>
+                <a href="https://github.com/rishiyaduwanshi/portpilot" class="ml-3 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 md:py-4 md:text-lg md:px-10">
+                    ⭐ GitHub
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features -->
+    <div class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-indigo-600 font-semibold tracking-wide uppercase">Features</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Everything you need for local development
+                </p>
+            </div>
+
+            <div class="mt-10">
+                <dl class="space-y-10 md:space-y-0 md:grid md:grid-cols-3 md:gap-x-8 md:gap-y-10">
+                    <div class="relative">
+                        <dt>
+                            <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+                                🔄
+                            </div>
+                            <p class="ml-16 text-lg leading-6 font-medium text-gray-900">Custom Domain Mapping</p>
+                        </dt>
+                        <dd class="mt-2 ml-16 text-base text-gray-500">
+                            Map any local port to a custom domain of your choice.
+                        </dd>
+                    </div>
+
+                    <div class="relative">
+                        <dt>
+                            <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+                                🛡️
+                            </div>
+                            <p class="ml-16 text-lg leading-6 font-medium text-gray-900">Automatic Port Handling</p>
+                        </dt>
+                        <dd class="mt-2 ml-16 text-base text-gray-500">
+                            Smart port 80 handling with automatic fallback options.
+                        </dd>
+                    </div>
+
+                    <div class="relative">
+                        <dt>
+                            <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+                                🖥️
+                            </div>
+                            <p class="ml-16 text-lg leading-6 font-medium text-gray-900">Cross-Platform</p>
+                        </dt>
+                        <dd class="mt-2 ml-16 text-base text-gray-500">
+                            Works seamlessly on Windows, macOS, and Linux.
+                        </dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Start -->
+    <div class="bg-gray-50 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-indigo-600 font-semibold tracking-wide uppercase">Quick Start</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Get started in minutes
+                </p>
+            </div>
+
+            <div class="mt-10">
+                <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+                    <div class="px-4 py-5 sm:p-6">
+                        <div class="text-sm text-gray-500">
+                            <p class="font-medium text-gray-900 mb-3">1. Install PortPilot</p>
+                            <pre class="bg-gray-800 text-white p-4 rounded-md">npm install -D portpilot</pre>
+
+                            <p class="font-medium text-gray-900 mt-6 mb-3">2. Create .pilotrc.js</p>
+                            <pre class="bg-gray-800 text-white p-4 rounded-md">export default {
+  port: 3000,
+  domain: 'myapp.local',
+  isHttps: false,
+  isLog: true
+}</pre>
+
+                            <p class="font-medium text-gray-900 mt-6 mb-3">3. Run PortPilot</p>
+                            <pre class="bg-gray-800 text-white p-4 rounded-md">npx portpilot</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
+            <div class="flex justify-center space-x-6 md:order-2">
+                <a href="https://github.com/rishiyaduwanshi/portpilot" class="text-gray-400 hover:text-gray-500">
+                    GitHub
+                </a>
+                <a href="https://www.npmjs.com/package/portpilot" class="text-gray-400 hover:text-gray-500">
+                    NPM
+                </a>
+            </div>
+            <div class="mt-8 md:mt-0 md:order-1">
+                <p class="text-center text-base text-gray-400">
+                    &copy; 2024 PortPilot. MIT License.
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
