@@ -3,7 +3,7 @@
   "author": "Abhinav Prakash",
   "version": "0.0.2-patch1",
   "description": "Map local dev ports to custom domains easily",
-  "homepage": "https://portpilot.pages.dev",
+  "homepage": "https://portpilot.js.org",
   "main": "./dist/cjs/main.js",
   "module": "./dist/esm/main.js",
   "exports": {
