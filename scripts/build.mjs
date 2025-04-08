@@ -6,27 +6,53 @@ const srcDir = './lib';
 const distCjs = './dist/cjs';
 const distEsm = './dist/esm';
 
-// Build all files in lib directory
-async function buildAll() {
-  const files = readdirSync(srcDir, { recursive: true })
-    .filter(file => file.endsWith('.js'));
+const cliEntry = 'bin/cli.js';
+const mainEntry = 'main.js';
 
-  // Build CJS version
+const libFiles = readdirSync(srcDir, { recursive: true })
+  .filter(file => file.endsWith('.js'))
+  .map(file => join(srcDir, file));
+
+const commonOptions = {
+  platform: 'node',
+  target: 'node14',
+  bundle: true,
+  outbase: '.',
+  external: ['node:*']  // Exclude built-ins
+};
+
+async function buildAll() {
+  // --- CJS CLI (with shebang) ---
   await esbuild.build({
-    entryPoints: ['main.js', 'bin/cli.js', ...files.map(f => join(srcDir, f))],
-    outdir: distCjs,
+    entryPoints: [cliEntry],
+    outfile: `${distCjs}/bin/cli.js`, 
     format: 'cjs',
-    platform: 'node',
-    target: 'node14',
+    banner: { js: '#!/usr/bin/env node' },
+    ...commonOptions
   });
 
-  // Build ESM version
+  // --- ESM CLI ---
   await esbuild.build({
-    entryPoints: ['main.js', 'bin/cli.js', ...files.map(f => join(srcDir, f))],
+    entryPoints: [cliEntry],
+    outfile: `${distEsm}/bin/cli.js`, 
+    format: 'esm',
+    ...commonOptions
+  });
+
+  // --- CJS main + lib ---
+  await esbuild.build({
+    entryPoints: [mainEntry, ...libFiles],
+    outdir: distCjs,
+    format: 'cjs',
+    ...commonOptions
+  });
+
+  // --- ESM main + lib ---
+  await esbuild.build({
+    entryPoints: [mainEntry, ...libFiles],
     outdir: distEsm,
     format: 'esm',
-    platform: 'node',
-    target: 'node14',
+    ...commonOptions
   });
 }
 

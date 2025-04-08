@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 import { loadConfig } from '../lib/config.js';
 import { startProxy } from '../main.js';
 
