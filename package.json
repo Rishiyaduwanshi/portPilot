@@ -1,7 +1,7 @@
 {
 	"name": "portpilot",
 	"author": "Abhinav Prakash",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Map local dev ports to custom domains easily",
 	"homepage": "https://portpilot.js.org",
 	"type": "module",
@@ -13,12 +13,6 @@
 		"type": "git",
 		"url": "git+https://github.com/rishiyaduwanshi/portpilot.git"
 	},
-	"files": [
-		"bin/",
-		"lib/",
-		"validation/",
-		"README.md"
-	],
 	"keywords": [
 		"nginx",
 		"proxy",
