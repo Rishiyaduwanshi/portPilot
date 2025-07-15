@@ -6,16 +6,14 @@ templates/
 .DS_Store
 
 # Development files
-lib/
-bin/
 scripts/
-test/
+tests/
 templates/
-main.js
+main.go
 
 # Config files
 .gitignore
-.pilotrc.js
+.pilotrc.json
 
 # Source maps and logs
 *.map
@@ -27,5 +25,9 @@ main.js
 
 # Build process
 node_modules/
-
+demo
+bin/linux
+bin/mac
+bin/win
 web/*
+!bin/portpilot.js
