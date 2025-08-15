@@ -15,8 +15,8 @@ export async function validatePilotConfig(configPath) {
   try {
     config = await fs.readJson(configPath);
   } catch (err) {
-    console.error(chalk.red(`❌ Invalid JSON in .pilotrc.json`));
-    console.error(chalk.yellow('➡️ Please fix your JSON syntax.'));
+    console.error(chalk.red(`\u274C Invalid JSON in .pilotrc.json`));
+    console.error(chalk.yellow('\u27A1\uFE0F Please fix your JSON syntax.'));
     console.error(chalk.gray(err.message));
     process.exit(1);
   }
@@ -25,7 +25,7 @@ export async function validatePilotConfig(configPath) {
   try {
     schema = await fs.readJson(schemaPath);
   } catch (err) {
-    console.error(chalk.red(`❌ Failed to load schema: ${err.message}`));
+    console.error(chalk.red(`\u274C Failed to load schema: ${err.message}`));
     process.exit(1);
   }
 
@@ -33,7 +33,9 @@ export async function validatePilotConfig(configPath) {
   const valid = validate(config);
 
   if (!valid) {
-    console.log(chalk.red('❌ .pilotrc.json does not match expected schema.'));
+    console.log(
+      chalk.red('\u274C .pilotrc.json does not match expected schema.')
+    );
     for (const err of validate.errors) {
       console.log(chalk.yellow(`- ${err.instancePath || '/'} ${err.message}`));
     }

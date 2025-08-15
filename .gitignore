@@ -1,3 +1,10 @@
 node_modules
 demo
 .pilotrc.json
+.github
+build
+dist
+tsconfig.json
+tslint.json
+webpack.config.js
+diff

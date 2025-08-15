@@ -46,7 +46,7 @@ Create a `.pilotrc.json` in your project root:
       "domain": "test1.local",
       "port": 1010,
       "https": false,
-      "customNginxConfig": {
+      "customAppConfig": {
         "enabled": true,
         "path": "./conf/conf.nginx"
       }
@@ -97,7 +97,7 @@ portpilot stop
 ## 🔧 Advanced Usage: Custom Nginx Configs
 
 Need full control?  
-You can provide your own nginx block per app via the `customNginxConfig.path` key.  
+You can provide your own nginx block per app via the `customAppConfig.path` key.  
 When enabled, your config will override the default generated one.
 
 ---

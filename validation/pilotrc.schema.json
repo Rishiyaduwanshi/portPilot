@@ -33,7 +33,7 @@
           "https": {
             "type": "boolean"
           },
-          "customNginxConfig": {
+          "customAppConfig": {
             "type": "object",
             "properties": {
               "enabled": {
