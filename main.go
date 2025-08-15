@@ -19,7 +19,7 @@ const (
 
 func main() {
 	if len(os.Args) < 2 {
-		fmt.Println("Usage: portpilot <command> [args...]")
+		fmt.Println("Usage: hostpilot <command> [args...]")
 		return
 	}
 
@@ -33,7 +33,7 @@ func main() {
 	switch cmd {
 	case "addHost":
 		if len(os.Args) < 3 {
-			fmt.Println("Usage: portpilot addHost <domain1> [domain2 domain3...]")
+			fmt.Println("Usage: hostpilot addHost <domain1> [domain2 domain3...]")
 			return
 		}
 		ensureBackupExists()
@@ -42,7 +42,7 @@ func main() {
 		}
 	case "removeHost":
 		if len(os.Args) < 3 {
-			fmt.Println("Usage: portpilot removeHost <domain1> [domain2 domain3...]")
+			fmt.Println("Usage: hostpilot removeHost <domain1> [domain2 domain3...]")
 			return
 		}
 		for _, domain := range os.Args[2:] {
