@@ -90,8 +90,8 @@ func handleAdd(domain string) {
 	entry := fmt.Sprintf("127.0.0.1 %s %s %s", domain, marker, time.Now().Format("02 Jan 2006 15:04:05"))
 
 	content, _ := os.ReadFile(hostsPath)
-	if strings.Contains(string(content), domain) {
-		fmt.Println("✔️", domain, "already present")
+	if strings.Contains(string(content), "127.0.0.1 "+domain) {
+		fmt.Println("✔️ ", domain, "already present")
 		return
 	}
 
@@ -135,6 +135,8 @@ func handleFlush() {
 	var cmd *exec.Cmd
 	if runtime.GOOS == "windows" {
 		cmd = exec.Command("ipconfig", "/flushdns")
+	}else if runtime.GOOS == "linux" {
+    	cmd = exec.Command("sudo", "systemd-resolve", "--flush-caches")
 	} else {
 		cmd = exec.Command("sudo", "dscacheutil", "-flushcache")
 	}
