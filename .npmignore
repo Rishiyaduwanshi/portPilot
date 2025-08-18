@@ -4,12 +4,16 @@ templates/
 .gitignore
 *.log
 .DS_Store
+.github
 
 # Development files
 scripts/
 tests/
 templates/
 main.go
+nginx
+dist 
+diff
 
 # Config files
 .gitignore

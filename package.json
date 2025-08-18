@@ -1,7 +1,7 @@
 {
 	"name": "portpilot",
 	"author": "Abhinav Prakash",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "Map local dev ports to custom domains easily",
 	"homepage": "https://portpilot.js.org",
 	"type": "module",
