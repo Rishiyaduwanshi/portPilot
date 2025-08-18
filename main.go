@@ -199,12 +199,24 @@ func hasPermission() bool {
 }
 
 func relaunchAsAdmin() {
-	exePath, _ := os.Executable()
-	args := strings.Join(os.Args[1:], " ")
-	cmd := exec.Command("powershell", "-Command",
-		fmt.Sprintf(`Start-Process -FilePath "%s" -ArgumentList '%s' -Verb RunAs`, exePath, args))
-	cmd.Stdout = os.Stdout
-	cmd.Stderr = os.Stderr
-	cmd.Stdin = os.Stdin
-	cmd.Run()
+	binPath, _ := os.Executable()
+	args := os.Args[1:]
+
+	if runtime.GOOS == "windows" {
+		// Windows: Run with elevation
+		cmd := exec.Command("powershell", "-Command",
+			fmt.Sprintf(`Start-Process -FilePath "%s" -ArgumentList '%s' -Verb RunAs`,
+				binPath, strings.Join(args, " ")))
+		cmd.Stdout = os.Stdout
+		cmd.Stderr = os.Stderr
+		cmd.Stdin = os.Stdin
+		cmd.Run()
+	} else {
+		// Mac/Linux: Relaunch with sudo
+		cmd := exec.Command("sudo", append([]string{binPath}, args...)...)
+		cmd.Stdout = os.Stdout
+		cmd.Stderr = os.Stderr
+		cmd.Stdin = os.Stdin
+		cmd.Run()
+	}
 }
