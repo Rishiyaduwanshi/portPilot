@@ -55,7 +55,6 @@ echo "[*] Configuring full-feature static build..."
   --http-uwsgi-temp-path=temp/uwsgi_temp \
   --with-http_ssl_module \
   --with-http_v2_module \
-  --with-http_v3_module \
   --with-http_gzip_static_module \
   --with-http_stub_status_module \
   --with-http_realip_module \
@@ -74,8 +73,6 @@ echo "[*] Configuring full-feature static build..."
   --with-stream_ssl_module \
   --with-stream_realip_module \
   --with-stream_ssl_preread_module \
-  --with-threads \
-  --with-file-aio \
   --with-compat \
   --with-pcre-jit \
   --with-pcre=../$PCRE_VER \

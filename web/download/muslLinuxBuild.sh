@@ -5,15 +5,15 @@ set -e
 # Vars
 # -----------------------------
 NGINX_VER="1.28.0"
-PCRE_VER="pcre2-10.39"
-ZLIB_VER="zlib-1.3.1"
-OPENSSL_VER="openssl-3.0.15"
+PCRE_VER="8.45"
+OPENSSL_VER="3.0.15"
+ZLIB_VER="1.3.1"
 BINARY_NAME="nginxpilot"
 OUTPUT_DIR="portpilot"
 PWD=$(pwd)
 
 # -----------------------------
-# Dependencies
+# Dependencies (Build-time only)
 # -----------------------------
 echo "[*] Installing build dependencies..."
 sudo apt-get update
@@ -22,29 +22,33 @@ sudo apt-get install -y build-essential perl curl make gcc musl musl-tools
 # -----------------------------
 # Download sources
 # -----------------------------
-echo "[*] Downloading Nginx and deps..."
+echo "[*] Downloading Nginx..."
 curl -LO http://nginx.org/download/nginx-$NGINX_VER.tar.gz
-curl -LO https://github.com/PCRE2Project/pcre2/releases/download/$PCRE_VER/$PCRE_VER.tar.gz
-curl -LO https://zlib.net/$ZLIB_VER.tar.gz
-curl -LO https://www.openssl.org/source/$OPENSSL_VER.tar.gz
-
-# Extract
 tar -xzf nginx-$NGINX_VER.tar.gz
-tar -xzf $PCRE_VER.tar.gz
-tar -xzf $ZLIB_VER.tar.gz
-tar -xzf $OPENSSL_VER.tar.gz
+
+echo "[*] Downloading PCRE..."
+curl -LO https://downloads.sourceforge.net/project/pcre/pcre/$PCRE_VER/pcre-$PCRE_VER.tar.gz
+tar -xzf pcre-$PCRE_VER.tar.gz
+
+echo "[*] Downloading OpenSSL..."
+curl -LO https://www.openssl.org/source/openssl-$OPENSSL_VER.tar.gz
+tar -xzf openssl-$OPENSSL_VER.tar.gz
+
+echo "[*] Downloading zlib..."
+curl -LO https://zlib.net/zlib-$ZLIB_VER.tar.gz
+tar -xzf zlib-$ZLIB_VER.tar.gz
 
 # -----------------------------
-# Build Nginx (static, musl)
+# Build Nginx (Dynamic libs)
 # -----------------------------
 cd nginx-$NGINX_VER
-echo "[*] Configuring full static build with musl..."
+echo "[*] Configuring Nginx dynamic build..."
 
 CC=musl-gcc ./configure \
   --with-debug \
   --build=nginxpilot \
   --prefix= \
-  --sbin-path=$BINARY_NAME \
+  --sbin-path=nginxpilot \
   --conf-path=conf/nginx.conf \
   --pid-path=logs/nginx.pid \
   --http-log-path=logs/access.log \
@@ -76,30 +80,72 @@ CC=musl-gcc ./configure \
   --with-stream_realip_module \
   --with-stream_ssl_preread_module \
   --with-threads \
-  --with-file-aio \
   --with-compat \
-  --with-pcre-jit \
-  --with-pcre=../$PCRE_VER \
-  --with-zlib=../$ZLIB_VER \
-  --with-openssl=../$OPENSSL_VER \
-  --with-openssl-opt="no-asm no-tests" \
-  --with-cc-opt="-static -Os -DFD_SETSIZE=1024" \
-  --with-ld-opt="-static -s"
+  --with-cc-opt="-Os -DFD_SETSIZE=1024" \
+  --with-ld-opt="-s" \
+  --with-pcre=../pcre-$PCRE_VER \
+  --with-openssl=../openssl-$OPENSSL_VER \
+  --with-openssl-opt="no-asm no-tests CC=musl-gcc" \
+  --with-zlib=../zlib-$ZLIB_VER
 
 echo "[*] Building Nginx..."
 make -j$(nproc)
 
 # -----------------------------
-# Copy binary
+# Create runtime wrapper to check runtime libs
+# -----------------------------
+cat > main_wrapper.c <<'EOF'
+#include <stdio.h>
+#include <stdlib.h>
+#include <dlfcn.h>
+
+int nginx_main(int argc, char **argv);
+
+void check_lib(const char *lib, const char *pkg) {
+    void *h = dlopen(lib, RTLD_LAZY);
+    if (!h) {
+        fprintf(stderr, "\x1b[31mError: Missing library %s\x1b[0m\n", lib);
+        fprintf(stderr, "Please install package: %s\n\n", pkg);
+        exit(1);
+    }
+    dlclose(h);
+}
+
+int main(int argc, char **argv) {
+    check_lib("libssl.so", "libssl-dev (or openssl runtime)");
+    check_lib("libssl.so.3", "libssl3 (runtime)");
+    check_lib("libcrypto.so.3", "libssl3 (runtime)");
+    check_lib("libcrypto.so", "libssl-dev (or openssl runtime)");
+    check_lib("libpcre.so.3", "libpcre3");
+    check_lib("libpcre.so", "libpcre3");
+    check_lib("libz.so", "zlib1g");
+
+    return nginx_main(argc, argv);
+}
+EOF
+
+# -----------------------------
+# Compile wrapper into final binary
+# -----------------------------
+echo "[*] Linking wrapper with nginx object files..."
+musl-gcc -o $BINARY_NAME main_wrapper.c objs/*.o -ldl -lssl -lcrypto -lz -lpthread
+
+# -----------------------------
+# Copy final binary
 # -----------------------------
 mkdir -p ../$OUTPUT_DIR
-cp objs/nginx ../$OUTPUT_DIR/$BINARY_NAME
+cp $BINARY_NAME ../$OUTPUT_DIR/$BINARY_NAME
 chmod +x ../$OUTPUT_DIR/$BINARY_NAME
 
 # -----------------------------
 # Cleanup
 # -----------------------------
 cd ..
-rm -rf nginx-$NGINX_VER nginx-$NGINX_VER.tar.gz $PCRE_VER.tar.gz $ZLIB_VER.tar.gz $OPENSSL_VER.tar.gz $PCRE_VER $ZLIB_VER $OPENSSL_VER
+rm -rf nginx-$NGINX_VER nginx-$NGINX_VER.tar.gz
+rm -rf pcre-$PCRE_VER pcre-$PCRE_VER.tar.gz
+rm -rf openssl-$OPENSSL_VER openssl-$OPENSSL_VER.tar.gz
+rm -rf zlib-$ZLIB_VER zlib-$ZLIB_VER.tar.gz
+rm -f main_wrapper.c
 
-echo "[✔] Build completed. Portable static binary is at $OUTPUT_DIR/$BINARY_NAME"
+echo "[✔] Build completed. Final binary is at $OUTPUT_DIR/$BINARY_NAME"
+echo "[i] Run ./nginxpilot directly. If runtime libraries are missing, you'll see a friendly error."
