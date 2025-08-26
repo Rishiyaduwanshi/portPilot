@@ -1,10 +1,12 @@
 # 🚀 PortPilot
 
- Pilot your ports like domains, effortlessly map your local apps to custom domains — no admin headaches, no messy proxy setups.  
+Pilot your ports like domains — effortlessly map your local apps to custom domains.  
+No admin headaches. No messy proxy setups.  
+
 **Powered by nginx under the hood.** One config file. Multiple apps. Zero chaos.
 
 [![npm version](https://img.shields.io/npm/v/portpilot.svg)](https://www.npmjs.com/package/portpilot)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![License: PortPilot](https://img.shields.io/badge/License-PortPilot--v1.0-brightgreen.svg)](./LICENSE)
 
 🌐 [portpilot.js.org](https://portpilot.js.org)
 
@@ -23,12 +25,22 @@
 
 ## 📦 Installation
 
-```bash
-# As a dev dependency
 pnpm add -D portpilot
 
 # Or install globally
 pnpm add -g portpilot
+
+# Latest feature release with HTTPS support
+pnpm add -D portpilot@next
+```bash
+# Stable version (default)
+pnpm add -D portpilot
+
+# Or install globally
+pnpm add -g portpilot
+
+# Latest feature release with HTTPS support
+pnpm add -D portpilot@next
 ```
 
 Compatible with `npm`, `yarn`, or `pnpm`.
@@ -37,7 +49,7 @@ Compatible with `npm`, `yarn`, or `pnpm`.
 
 ## ⚙️ Configuration — `.pilotrc.json`
 
-Create a `.pilotrc.json` in your project root:
+Create a `.pilotrc.json` in your project root. Example:
 
 ```json
 {
@@ -45,7 +57,7 @@ Create a `.pilotrc.json` in your project root:
     {
       "domain": "test1.local",
       "port": 1010,
-      "https": false,
+      "https": true,
       "customAppConfig": {
         "enabled": true,
         "path": "./conf/conf.nginx"
@@ -54,7 +66,7 @@ Create a `.pilotrc.json` in your project root:
     {
       "domain": "test2.local",
       "port": 2020,
-      "https": false
+      "https": true
     },
     {
       "domain": "test3.local",
@@ -72,7 +84,9 @@ Create a `.pilotrc.json` in your project root:
 }
 ```
 
-💡 Add as many apps as you want — no limits.
+
+💡 Add as many apps as you want — no limits.  
+⚠️ Note: `"https": true` enables HTTPS with automatic mkcert certificates.
 
 ---
 
@@ -102,34 +116,53 @@ When enabled, your config will override the default generated one.
 
 ---
 
+## 🌐 Latest Features (Beta/Next)
+
+* HTTPS support with automatic SSL generation (requires mkcert)
+* To try the latest feature:
+
+```bash
+npm i portpilot@next
+```
+
+* Default `npm i portpilot` installs the stable version without HTTPS.
+
+---
+
 ## 🛣️ Roadmap
 
-- ✅ Host file automation  
-- ✅ Nginx-based reverse proxy  
-- ✅ Multi-app support  
-- ✅ Per-app custom nginx configs  
-- ⏳ HTTPS + auto-cert generation  
-- ⏳ Global nginx config support  
-- ⏳ Live reload on config change  
+* ✅ Host file automation
+* ✅ Nginx-based reverse proxy
+* ✅ Multi-app support
+* ✅ Per-app custom nginx configs
+* ✅ HTTPS with automatic SSL certificate generation (requires mkcert)
+* ⏳ Global nginx config support
+* ⏳ Live reload on config change
 
 ---
 
 ## 📋 Requirements
 
-- Node.js 20+
-- Admin access (`sudo` on macOS/Linux, auto prompt on Windows)
-- Some experience with local development
+* Node.js 20+
+* [mkcert](https://github.com/FiloSottile/mkcert) (for HTTPS/SSL support; install globally)
+* Admin access (`sudo` on macOS/Linux, auto prompt on Windows)
+* Some experience with local development
 
 ---
 
 ## 📄 License
 
-MIT © [Abhinav Prakash](https://github.com/rishiyaduwanshi)
+**PortPilot License (Custom) v1.0** — see the [LICENSE](./LICENSE) file for details.
+
+© [Abhinav Prakash](https://github.com/rishiyaduwanshi)
 
 ---
 
 ## 🙌 Support & Feedback
 
-- 🐛 [Report issues](https://github.com/rishiyaduwanshi/portpilot/issues)
-- 🌟 Star this repo if it helped you!
-- 💌 [contact@rishiyaduwanshi.me](mailto:contact@rishiyaduwanshi.me)
+* 🐛 [Report issues](https://github.com/rishiyaduwanshi/portpilot/issues)
+* 🌟 Star this repo if it helped you!
+* 💌 [contact@rishiyaduwanshi.me](mailto:contact@rishiyaduwanshi.me)
+
+```
+
