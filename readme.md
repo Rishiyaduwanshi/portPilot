@@ -4,7 +4,10 @@
 **Powered by nginx under the hood.** One config file. Multiple apps. Zero chaos.
 
 [![npm version](https://img.shields.io/npm/v/portpilot.svg)](https://www.npmjs.com/package/portpilot)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![License: PortPilot](https://img.shields.io/badge/License-PortPilot--v1.0-brightgreen.svg)](./LICENSE)
+
+
+
 
 🌐 [portpilot.js.org](https://portpilot.js.org)
 
@@ -45,7 +48,7 @@ Create a `.pilotrc.json` in your project root:
     {
       "domain": "test1.local",
       "port": 1010,
-      "https": false,
+  "https": true, // set to true for HTTPS (auto-cert with mkcert)
       "customAppConfig": {
         "enabled": true,
         "path": "./conf/conf.nginx"
@@ -54,7 +57,7 @@ Create a `.pilotrc.json` in your project root:
     {
       "domain": "test2.local",
       "port": 2020,
-      "https": false
+      "https": true
     },
     {
       "domain": "test3.local",
@@ -104,19 +107,20 @@ When enabled, your config will override the default generated one.
 
 ## 🛣️ Roadmap
 
-- ✅ Host file automation  
-- ✅ Nginx-based reverse proxy  
-- ✅ Multi-app support  
-- ✅ Per-app custom nginx configs  
-- ⏳ HTTPS + auto-cert generation  
-- ⏳ Global nginx config support  
-- ⏳ Live reload on config change  
+- ✅ Host file automation
+- ✅ Nginx-based reverse proxy
+- ✅ Multi-app support
+- ✅ Per-app custom nginx configs
+- ✅ HTTPS with automatic SSL certificate generation (requires mkcert)
+- ⏳ Global nginx config support
+- ⏳ Live reload on config change
 
 ---
 
 ## 📋 Requirements
 
 - Node.js 20+
+- [mkcert](https://github.com/FiloSottile/mkcert) (for HTTPS/SSL support; install globally)
 - Admin access (`sudo` on macOS/Linux, auto prompt on Windows)
 - Some experience with local development
 
@@ -124,7 +128,10 @@ When enabled, your config will override the default generated one.
 
 ## 📄 License
 
-MIT © [Abhinav Prakash](https://github.com/rishiyaduwanshi)
+
+**PortPilot License (Custom) v1.0** — see the [LICENSE](./LICENSE) file for details.
+
+© [Abhinav Prakash](https://github.com/rishiyaduwanshi)
 
 ---
 

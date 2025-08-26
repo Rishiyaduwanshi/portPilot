@@ -1,21 +1,36 @@
-MIT License
+PortPilot License (Custom) v1.0 – 2025
 
-Copyright (c) 2025 Abhinav Prakash
+Copyright (c) 2025–present Abhinav Prakash
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Permission is hereby granted, free of charge, to any person or organization to
+use, copy, modify, and distribute this software for personal or commercial purposes,
+subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+1. Attribution  
+   Proper credit to the original author ("Abhinav Prakash") must be included in
+   any copy, modification, or distribution of this software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+2. Non-Resale of Original  
+   This software may not be sold, sublicensed, or offered as part of a paid product
+   or service in its original or minimally modified form.
+
+3. Substantial Modification  
+   If more than 25% of the functionality is changed, and the resulting work is
+   clearly distinct from PortPilot, it may be sold or offered as a paid product.
+   In such cases, attribution to the original author is still required.
+
+4. Free Features Must Remain Free  
+   Any features originally provided free by PortPilot must remain free in any
+   derivative or modified work. Companies may include PortPilot in paid offerings
+   only if they add substantial new functionality beyond what PortPilot provides.
+
+5. Prohibited Use  
+   Redistribution, resale, or offering PortPilot as a paid service without adhering
+   to these conditions is strictly prohibited.
+
+THIS SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
