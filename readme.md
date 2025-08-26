@@ -1,7 +1,7 @@
 # 🚀 PortPilot
 
-Pilot your ports like domains — effortlessly map your local apps to custom domains.  
-No admin headaches. No messy proxy setups.  
+Pilot your ports like domains — effortlessly map your local apps to custom domains.
+No admin headaches. No messy proxy setups.
 
 **Powered by nginx under the hood.** One config file. Multiple apps. Zero chaos.
 
@@ -14,24 +14,17 @@ No admin headaches. No messy proxy setups.
 
 ## ✨ Why PortPilot?
 
-- ⚡ Instantly map `myapp.local` to your running apps
-- 🧠 No more editing the `hosts` file — handled automatically
-- 🖥️ Nginx-powered proxy setup (auto-installed if missing)
-- 🛠️ Supports per-app custom nginx configs
-- 🧹 Smart cleanup on stop: hosts, configs, rules
-- 📦 Lightweight, fast, and made for developers
+* ⚡ Instantly map `myapp.local` to your running apps
+* 🧠 No more editing the `hosts` file — handled automatically
+* 🖥️ Nginx-powered proxy setup (auto-installed if missing)
+* 🛠️ Supports per-app custom nginx configs
+* 🧹 Smart cleanup on stop: hosts, configs, rules
+* 📦 Lightweight, fast, and made for developers
 
 ---
 
 ## 📦 Installation
 
-pnpm add -D portpilot
-
-# Or install globally
-pnpm add -g portpilot
-
-# Latest feature release with HTTPS support
-pnpm add -D portpilot@next
 ```bash
 # Stable version (default)
 pnpm add -D portpilot
@@ -84,8 +77,7 @@ Create a `.pilotrc.json` in your project root. Example:
 }
 ```
 
-
-💡 Add as many apps as you want — no limits.  
+💡 Add as many apps as you want — no limits.
 ⚠️ Note: `"https": true` enables HTTPS with automatic mkcert certificates.
 
 ---
@@ -110,8 +102,8 @@ portpilot stop
 
 ## 🔧 Advanced Usage: Custom Nginx Configs
 
-Need full control?  
-You can provide your own nginx block per app via the `customAppConfig.path` key.  
+Need full control?
+You can provide your own nginx block per app via the `customAppConfig.path` key.
 When enabled, your config will override the default generated one.
 
 ---
@@ -163,6 +155,3 @@ npm i portpilot@next
 * 🐛 [Report issues](https://github.com/rishiyaduwanshi/portpilot/issues)
 * 🌟 Star this repo if it helped you!
 * 💌 [contact@rishiyaduwanshi.me](mailto:contact@rishiyaduwanshi.me)
-
-```
-
